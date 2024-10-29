@@ -1,3 +1,4 @@
+
 // i improve test for version 0.94 - add random part to names of fields;
 // it smaller decrease speed of generation, but much better for testing
 //

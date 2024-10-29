@@ -6,7 +6,7 @@
 <!-- # . - site : zrfisaac.github.io -->
 
 <!-- # [ markdown ] -->
-# LkJSON 0.94.0
+# LkJSON 0.95.0
 
 - **Original Author:** Leonid Koninin
 - **Current Maintainer:** Isaac Caires
