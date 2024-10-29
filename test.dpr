@@ -1,4 +1,3 @@
-
 // i improve test for version 0.94 - add random part to names of fields;
 // it smaller decrease speed of generation, but much better for testing
 //
@@ -51,7 +50,7 @@ begin
   writeln(ws);
   writeln('press enter...');
   readln;
-// works in 0.94 only!
+// works in 0.94+ only!
   js := TlkJSONobject(xs);
   for i := 1 to 10 do
     begin
