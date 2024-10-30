@@ -1,7 +1,7 @@
 {
-  LkJSON v1.00
+  LkJSON v1.01
 
-  11 may 2007
+  18 may 2007
 
   Copyright (C) 2006,2007 Leonid Koninin
   leon_kon@users.sourceforge.net
@@ -22,6 +22,9 @@
 
   changes:
 
+  v1.01 18/05/2007 * fix small bug in new text generation routine, check
+                     library for leaks by fastmm4; thanx for idea and comments
+                     for Glynn Owen
   v1.00 12/05/2007 * some fixes in new code (mistypes, mistypes...)
                    * also many fixes by ideas of Henri Gourvest - big thanx
                      for him again; he send me code for thread-safe initializing
@@ -1307,7 +1310,8 @@ begin
   pt0 := nil;
   get_more_memory;
   gn_base(obj);
-  result := StrPas(pt0);
+  mem_ch(#0);
+  result := string(pt0);
   freemem(pt0);
 {$else}
   result := gn_base(obj);
