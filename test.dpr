@@ -3,11 +3,16 @@
 //
 // Leon, 27/03/2007
 
+{.$define usefastmm}
+
 program test;
 
 {$APPTYPE CONSOLE}
 
 uses
+{$ifdef usefastmm}
+  fastmm4,
+{$endif}
   windows,
   SysUtils,
   uLkJSON in 'uLkJSON.pas';
@@ -36,13 +41,21 @@ begin
   writeln('time for insert:',k);
   writeln('hash table counters:');
   writeln(js.hashtable.counters);
+
   k := GetTickCount;
   ws := TlkJSON.GenerateText(js);
   writeln('text length:',length(ws));
   k := GetTickCount-k;
+// free the object
+  writeln('release memory...');
+  js.Free;
+//  js.Free;
+
   writeln('time for gentext:',k);
+
   k := GetTickCount;
   xs := TlkJSON.ParseText(ws);
+
   k := GetTickCount-k;
   writeln('time for parse:',k);
   writeln('approx speed of parse (th.bytes/sec):',length(ws) div k);
@@ -60,8 +73,11 @@ begin
       writeln('value of field ',i,' is ',js.FieldByIndex[i].Value);
       writeln;
     end;
-  writeln('press enter...');
-  readln;
+  writeln('release memory...');
   if assigned(xs) then FreeAndNil(xs);
 //  js.Free;
+//}
+  writeln('press enter...');
+  ws := '';
+  readln;
 end.
